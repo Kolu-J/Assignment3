@@ -29,6 +29,10 @@
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];
+}
 
 - (void)didReceiveMemoryWarning
 {

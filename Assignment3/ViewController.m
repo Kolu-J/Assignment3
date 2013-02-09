@@ -16,29 +16,34 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
+void addFruit (id anyFruit)
 {
-    [super viewDidLoad];
-    
-    self.title = @"Bluth's Banana Stand";
-    
-    _allSelected = NO;
-    
-    _cart = [NSMutableArray arrayWithCapacity:0];
-    
-    for(int i = 0; i < 50; i++){
+    for(int i = 0; i < 50; i++)
+    {
         NSString * fruitName = [NSString stringWithFormat:@"Banana %d", i];
         
-        if((i % 10) == 0){
+        if((i % 10) == 0)
+        {
             fruitName = [NSString stringWithFormat:@"Free Banana %d", i];
         }
         
         Fruit * anonFruit = [[Fruit alloc] initWithWithName:fruitName andColor:@"Yellow" andShape:@"Curved"];
         anonFruit.url = @"http://en.m.wikipedia.org/wiki/Banana";
-        [_cart addObject:anonFruit];
+        [anyFruit addObject:anonFruit];
     }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
+    self.title = @"Kolu's Banana Stand";
     
+    _allSelected = NO;
+    
+    _cart = [NSMutableArray arrayWithCapacity:0];
+    
+    addFruit(_cart);
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,16 +69,24 @@
 //Should remove all of the fruit in the cart.
 -(IBAction)removeAllFruitInCart:(id)sender
 {
-    
+    [_cart removeAllObjects];
+    _allSelected = NO;
+    [_selectAll setTitle:@"Select None" forState:UIControlStateNormal];
+    _selectAll.hidden = YES;
+    _emptyCart.hidden = YES;
+    _fillCart.hidden = NO;
+    [_cartView reloadData];
 }
 
 //should add 50 bananas to the cart and display them!
 -(IBAction)fillCartWithBananas:(id)sender
 {
-    
+    addFruit(_cart);
+    _selectAll.hidden = NO;
+    _emptyCart.hidden = NO;
+    _fillCart.hidden = YES;
+    [_cartView reloadData];
 }
-
-
 
 #pragma mark UITableView dataSource and delegate methods
 
