@@ -74,9 +74,9 @@ void addFruit (id anyFruit)
         [_cart removeAllObjects];
         _allSelected = NO;
         [_selectAll setTitle:@"Select All" forState:UIControlStateNormal];
-        _selectAll.hidden = YES;
-        _emptyCart.hidden = YES;
-        _fillCart.hidden = NO;
+        _selectAll.enabled = NO;
+        _emptyCart.enabled = NO;
+        _fillCart.enabled = YES;
         [_cartView reloadData];
     }
 }
@@ -85,9 +85,9 @@ void addFruit (id anyFruit)
 -(IBAction)fillCartWithBananas:(id)sender
 {
     addFruit(_cart);
-    _selectAll.hidden = NO;
-    _emptyCart.hidden = NO;
-    _fillCart.hidden = YES;
+    _selectAll.enabled = YES;
+    _emptyCart.enabled = YES;
+    _fillCart.enabled = NO;
     [_cartView reloadData];
 }
 
