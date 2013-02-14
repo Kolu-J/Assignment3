@@ -24,7 +24,6 @@
 
 -(IBAction)selectAllOrNone:(id)sender;
 
-
 -(IBAction)removeAllFruitInCart:(id)sender;
 -(IBAction)fillCartWithBananas:(id)sender;
 

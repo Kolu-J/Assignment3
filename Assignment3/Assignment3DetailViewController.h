@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSString * url;
 
+-(IBAction)webView:(id)sender;
+
 @end

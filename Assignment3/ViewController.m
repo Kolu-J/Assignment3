@@ -69,13 +69,16 @@ void addFruit (id anyFruit)
 //Should remove all of the fruit in the cart.
 -(IBAction)removeAllFruitInCart:(id)sender
 {
-    [_cart removeAllObjects];
-    _allSelected = NO;
-    [_selectAll setTitle:@"Select None" forState:UIControlStateNormal];
-    _selectAll.hidden = YES;
-    _emptyCart.hidden = YES;
-    _fillCart.hidden = NO;
-    [_cartView reloadData];
+    if([_cart count] > 0)
+    {
+        [_cart removeAllObjects];
+        _allSelected = NO;
+        [_selectAll setTitle:@"Select All" forState:UIControlStateNormal];
+        _selectAll.hidden = YES;
+        _emptyCart.hidden = YES;
+        _fillCart.hidden = NO;
+        [_cartView reloadData];
+    }
 }
 
 //should add 50 bananas to the cart and display them!
@@ -89,7 +92,6 @@ void addFruit (id anyFruit)
 }
 
 #pragma mark UITableView dataSource and delegate methods
-
 -(int) numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -101,6 +103,9 @@ void addFruit (id anyFruit)
 
 -(int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if([_cart count] == 0){
+        return 1;
+    }
     return [_cart count];
 }
 
